@@ -29,6 +29,8 @@ cd "$parentdir"
 java -Xms6912M -Xmx6912M -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -jar minecraft_server.jar nogui
 ```
 
+Additionally, I am not a python guy, I also had to run `sudo apt install python-requests` for the script to work properly, as the proper dependencies are not installed with python by default.
+
 # MinecraftUpdater
 This is a python package to automate the updating of your server. Its so annoying to try and download the jar,
 ftp it over, stop the server, back up your world, etc. This automates alll that. just git clone this in the root of
