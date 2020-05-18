@@ -86,7 +86,7 @@ for version in data['versions']:
             os.rename('minecraft_server.jar', '../minecraft_server.jar')
             logging.info('Starting server...')
             os.chdir("..")
-            os.system('screen -S minecraft -d -m java -Xms16G -Xmx16G -jar minecraft_server.jar')
+            os.system('screen -S minecraft -d -m /etc/init.d/minecraft start')
 
         else:
             logging.info('Server is already up to date.')
