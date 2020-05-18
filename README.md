@@ -1,5 +1,5 @@
 # fork details
-I've forked this to modify launching minecraft from my init.d script I already set up, used at boot of my server machine and now also for updating the server.  The script is as follows:
+I've forked this to modify launching minecraft from my init.d script I already set up, used at boot of my server machine and now also for updating the server.  Mostly for my reference in case I have to re-set this up again...  the script is as follows:
 ```
 $> cat /etc/init.d/minecraft 
 #!/bin/bash
@@ -27,6 +27,11 @@ parentdir=${0%/*}
 cd "$parentdir"
 #java -Xmx6G -Xms6G -jar minecraft_server.jar nogui
 java -Xms6912M -Xmx6912M -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -jar minecraft_server.jar nogui
+```
+
+edited cron with `sudo crontab -e`, and added the following line at the bottom, which calls the script every hour, on the hour.
+```
+0 * * * * cd /home/jeremy/minecraft/mcServer/MinecraftUpdater && /usr/bin/python3 update.py >> cron.log
 ```
 
 Additionally, I am not a python guy, I also had to run `sudo apt install python-requests` for the script to work properly, as the proper dependencies are not installed with python by default.
