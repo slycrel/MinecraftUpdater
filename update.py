@@ -15,7 +15,12 @@ BACKUP_DIR = 'world_backups'
 LOG_FILENAME = 'auto_updater.log'
 
 
-logging.basicConfig(filename=LOG_FILENAME,level=logging.INFO)
+#logging.basicConfig(filename=LOG_FILENAME,level=logging.INFO)
+logging.basicConfig(
+    filename=LOG_FILENAME,
+    level=logging.INFO,
+    format='%(asctime)s %(levelname)-8s %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S')
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 # retrieve version manifest
